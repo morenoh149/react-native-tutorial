@@ -5,13 +5,6 @@
 'use strict';
 
 var React = require('react-native');
-
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title',
-   year: '2015',
-   posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
 var {
   AppRegistry,
   Image,
@@ -21,7 +14,13 @@ var {
   View,
 } = React;
 
-var numberSave = React.createClass({
+var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
+var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
+var PAGE_SIZE = 25;
+var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
+var REQUEST_URL = API_URL + PARAMS;
+
+var AwesomeProject = React.createClass({
   getInitialState: function() {
     return {
       dataSource: new ListView.DataSource({
@@ -30,9 +29,11 @@ var numberSave = React.createClass({
       loaded: false,
     };
   },
+
   componentDidMount: function() {
     this.fetchData();
   },
+
   fetchData: function() {
     fetch(REQUEST_URL)
       .then((response) => response.json())
@@ -44,6 +45,7 @@ var numberSave = React.createClass({
       })
       .done();
   },
+
   render: function() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
@@ -57,6 +59,7 @@ var numberSave = React.createClass({
       />
     );
   },
+
   renderLoadingView: function() {
     return (
       <View style={styles.container}>
@@ -66,6 +69,7 @@ var numberSave = React.createClass({
       </View>
     );
   },
+
   renderMovie: function(movie) {
     return (
       <View style={styles.container}>
@@ -79,7 +83,7 @@ var numberSave = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 var styles = StyleSheet.create({
@@ -108,7 +112,7 @@ var styles = StyleSheet.create({
   listView: {
     paddingTop: 20,
     backgroundColor: '#F5FCFF',
-  }
+  },
 });
 
-AppRegistry.registerComponent('numberSave', () => numberSave);
+AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
