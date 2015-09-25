@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var MoviesList = require('./moviesList');
 var {
   AppRegistry,
   StyleSheet,
@@ -50,9 +51,7 @@ var TabBarExample = React.createClass({
               selectedTab: 'blueTab',
             });
           }}>
-          <View style={styles.textView} >
-            <Text>foo</Text>
-          </View>
+          <MoviesList />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon="history"

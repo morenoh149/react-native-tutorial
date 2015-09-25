@@ -92,4 +92,5 @@ var numberSave = React.createClass({
   },
 });
 
-AppRegistry.registerComponent('numberSave', () => numberSave);
+module.exports = numberSave;
+// AppRegistry.registerComponent('numberSave', () => numberSave);
